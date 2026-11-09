@@ -1,0 +1,57 @@
+# Continuous UTC – Implications for Cisco Timing and Synchronization Equipment
+
+**Technical Information Note | Draft – 9 November 2026 | Dennis Hagarty, Principal TME**
+
+## Background
+
+On 15 October 2026, the 28th General Conference on Weights and Measures (CGPM) adopted Resolution 5, establishing that Continuous Coordinated Universal Time (UTC) will become effective on 20 May 2027 (see reference below).
+
+Historically, leap seconds have been periodically introduced to keep the difference between UTC and Earth rotation time (UT1) within 0.9 seconds. The original requirement to keep UTC roughly aligned with UT1 dates back to the introduction of modern UTC in 1972 and was primarily intended to support celestial navigation, where knowledge of the Earth's rotational position is important. At the time, accurate information about UT1 was not as readily accessible as it is today, so keeping UTC close to UT1 allowed navigators to use UTC directly without introducing significant positioning errors.
+
+Under the new policy, the allowed difference increases to 3,600 seconds, allowing UTC to operate continuously without leap-second adjustments for several centuries. With the widespread adoption of satellite navigation and the availability of precise Earth rotation information, this requirement has largely become obsolete. Applications that still need to know the Earth's rotational position can obtain the difference between UT1 and UTC independently, without requiring periodic adjustments to UTC itself.
+
+The decision is intended to eliminate the operational risks associated with leap seconds, particularly the potential introduction of a negative leap second, which has never previously occurred. A negative leap second (where a leap second is removed) would be needed in the event of a slight increase in the Earth's rate of rotation. Recent observations of the Earth's rotation have increased the likelihood that a negative leap second might otherwise be required.
+
+It's important to note that the transition to Continuous UTC on 20 May 2027 does not involve a time adjustment or discontinuity, nor does it introduce a new timescale or change the duration of the SI second. Put simply, we will stop the manipulation of UTC time to meet the previous 0.9-second limit. Any future adjustment would only be considered as the difference between UTC and UT1 approaches the new 3,600-second limit, a problem that lies far, far in the future.
+
+## Impact on Timing and Synchronization Equipment
+
+Because we are choosing not to do something we used to do, it follows that the transition to Continuous UTC is not expected to require changes to the operation of existing telecommunications timing and synchronization equipment. No leap seconds have been introduced for almost ten years, and the new policy will effectively continue this situation for the foreseeable future.
+
+## Precision Time Protocol (PTP)
+
+IEEE 1588 already supports the distribution of continuous time through the PTP timescale (known as TAI), together with mechanisms for conveying the offset between PTP time and UTC. The change to Continuous UTC does not require modifications to PTP message formats, timestamp processing, clock selection, or time distribution mechanisms.
+
+Consequently, no changes are anticipated to the operation of ITU-T G.8275.1 and G.8275.2 timing profiles, including Telecom Grandmaster (T-GM), Telecom Boundary Clock (T-BC) and Telecom Time Synchronous Clock (T-TSC) functions.
+
+Existing leap-second signalling mechanisms remain defined but will no longer be invoked to adjust UTC. Standards organizations may eventually decide to deprecate or repurpose these mechanisms, and Cisco would follow the relevant standards developments.
+
+## Global Navigation Satellite Systems (GNSS)
+
+GNSS receivers already provide the information needed to establish the relationship between GNSS system time and UTC. These mechanisms remain applicable under Continuous UTC. No changes to GNSS receiver operation are inherently required by the new policy.
+
+## Network Time Protocol (NTP)
+
+Existing NTP mechanisms remain compatible with Continuous UTC. No changes to the NTP protocol are required.
+
+## Synchronous Ethernet (SyncE)
+
+SyncE distributes frequency rather than time-of-day information and is therefore unaffected.
+
+## Implications for Cisco Equipment
+
+Based on the existing IEEE and ITU-T timing standards, **Cisco does not anticipate that the transition to Continuous UTC will require new timing protocol functionality, configuration changes, or software upgrades solely to accommodate the change in UTC policy.**
+
+Existing PTP, NTP and SyncE functionality is expected to continue operating normally.
+
+This assessment is based on protocol compatibility; confirmation for individual Cisco platforms and software releases remains subject to normal product engineering validation.
+
+## Future Standards Development
+
+IEEE, ITU-T and other standards organizations may eventually revise protocol specifications to reflect the discontinuation of leap seconds or changes to accommodate a new approach when the 3,600-second limit is approached. **Such revisions are not prerequisites for the operation of existing timing equipment under Continuous UTC.**
+
+## Reference
+
+BIPM, *Resolution 5 of the 28th CGPM (2026): On the technical actions needed to ensure the continuity of UTC.*
+
+[https://www.bipm.org/en/cgpm-2026/resolution-5](https://www.bipm.org/en/cgpm-2026/resolution-5)
